@@ -1,0 +1,294 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Georgia:wght@400;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 10%;
+    
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 10%;
+    
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 10%;
+    
+    /* Pale orange primary color */
+    --primary: 30 100% 80%;
+    --primary-foreground: 0 0% 10%;
+    
+    --secondary: 30 30% 96%;
+    --secondary-foreground: 0 0% 10%;
+    
+    --muted: 30 10% 96%;
+    --muted-foreground: 0 0% 45%;
+    
+    --accent: 30 30% 90%;
+    --accent-foreground: 0 0% 10%;
+    
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    
+    --border: 30 15% 90%;
+    --input: 30 15% 90%;
+    --ring: 30 70% 70%;
+    
+    --radius: 0.75rem;
+  }
+
+  .dark {
+    --background: 0 0% 10%;
+    --foreground: 0 0% 98%; /* Increased brightness for better visibility */
+    
+    --card: 0 0% 12%;
+    --card-foreground: 0 0% 98%; /* Increased brightness */
+    
+    --popover: 0 0% 12%;
+    --popover-foreground: 0 0% 98%; /* Increased brightness */
+    
+    --primary: 30 90% 75%; 
+    --primary-foreground: 0 0% 10%;
+    
+    --secondary: 0 0% 18%;
+    --secondary-foreground: 0 0% 98%; /* Increased brightness */
+    
+    --muted: 0 0% 20%;
+    --muted-foreground: 0 0% 85%; /* Increased brightness for muted text */
+    
+    --accent: 30 20% 25%;
+    --accent-foreground: 0 0% 98%; /* Increased brightness */
+    
+    --destructive: 0 70% 50%;
+    --destructive-foreground: 0 0% 98%;
+    
+    --border: 0 0% 25%;
+    --input: 0 0% 20%;
+    --ring: 30 70% 50%;
+  }
+  
+  * {
+    @apply border-border;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  body {
+    @apply bg-background text-foreground;
+  }
+  
+  /* Custom glass morphism */
+  .glass {
+    @apply bg-white/90 backdrop-blur-md border-b border-white/20 dark:bg-black/50 dark:border-white/10;
+  }
+  
+  .glass-dark {
+    @apply bg-black/5 backdrop-blur-md border border-black/5 dark:bg-white/5 dark:border-white/10;
+  }
+  
+  /* Custom button styles */
+  .btn-primary {
+    @apply rounded-full px-5 py-2.5 font-medium transition-all duration-200 
+    bg-primary text-primary-foreground shadow-md 
+    hover:shadow-lg hover:bg-primary/90 
+    active:scale-[0.98] active:shadow-sm
+    dark:text-gray-900 dark:shadow-black/20;
+  }
+  
+  .btn-secondary {
+    @apply rounded-full px-5 py-2.5 font-medium transition-all duration-200 
+    bg-secondary text-secondary-foreground 
+    hover:bg-secondary/80 
+    active:scale-[0.98]
+    dark:bg-gray-800 dark:text-gray-100 dark:hover:bg-gray-700;
+  }
+  
+  /* Glass card effect */
+  .glass-card {
+    @apply bg-white/50 backdrop-blur-sm border border-white/20 shadow-sm rounded-xl
+    dark:bg-black/40 dark:border-white/10;
+  }
+
+  /* Dark mode specific text contrast fixes */
+  .dark h1, .dark h2, .dark h3, .dark h4, .dark h5, .dark h6 {
+    @apply text-white;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  }
+
+  .dark p, .dark span, .dark li {
+    @apply text-gray-100;
+  }
+
+  .dark .text-foreground {
+    @apply text-gray-100;
+  }
+
+  .dark .text-foreground\/70, .dark .text-foreground\/80 {
+    @apply text-gray-300;
+  }
+  
+  .dark .text-foreground\/60 {
+    @apply text-gray-400;
+  }
+
+  .dark .text-muted-foreground {
+    @apply text-gray-300;
+  }
+  
+  /* Dark mode form inputs */
+  .dark input, .dark textarea, .dark select {
+    @apply bg-gray-800 border-gray-700 text-gray-100;
+  }
+  
+  /* Ensure high contrast for orange elements in dark mode */
+  .dark .bg-primary {
+    @apply text-gray-900;
+  }
+  
+  /* Smoother dark mode text for better readability */
+  .dark {
+    letter-spacing: 0.01em;
+  }
+  
+  /* Smooth transitions for page routing */
+  .page-transition-enter {
+    @apply opacity-0;
+  }
+  
+  .page-transition-enter-active {
+    @apply opacity-100 transition-opacity duration-300;
+  }
+  
+  .page-transition-exit {
+    @apply opacity-100;
+  }
+  
+  .page-transition-exit-active {
+    @apply opacity-0 transition-opacity duration-300;
+  }
+  
+  /* Template styles */
+  .template {
+    @apply border rounded-lg transition-all duration-200 cursor-pointer 
+    hover:shadow-md hover:scale-[1.02] 
+    active:scale-[0.98]
+    dark:border-gray-700;
+  }
+  
+  /* Card with hover effects */
+  .hover-card {
+    @apply border rounded-lg transition-all duration-300
+    hover:shadow-lg hover:scale-[1.02]
+    active:scale-[0.98]
+    dark:border-gray-700 dark:hover:shadow-black/30;
+  }
+  
+  /* Button styles */
+  .icon-btn {
+    @apply p-2 rounded-full hover:bg-secondary transition-colors dark:hover:bg-gray-800;
+  }
+  
+  /* Tooltip styles */
+  .tooltip {
+    @apply relative inline-block;
+  }
+  
+  .tooltip-text {
+    @apply invisible absolute z-10 px-3 py-2 bg-gray-800 text-white text-xs rounded-md opacity-0 transition-opacity duration-300 whitespace-nowrap
+    dark:bg-gray-700;
+  }
+  
+  .tooltip:hover .tooltip-text {
+    @apply visible opacity-100;
+  }
+  
+  /* Animation utilities */
+  .animate-fade-in {
+    animation: fadeIn 0.5s ease-in-out;
+  }
+  
+  .animate-slide-up {
+    animation: slideUp 0.3s ease-in-out;
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  
+  @keyframes slideUp {
+    from { transform: translateY(20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+  }
+  
+  /* Mobile responsive utilities */
+  @media (max-width: 640px) {
+    .container {
+      @apply px-4;
+    }
+    
+    h1 {
+      @apply text-2xl;
+    }
+    
+    h2 {
+      @apply text-xl;
+    }
+    
+    .btn-primary, .btn-secondary {
+      @apply px-4 py-2 text-sm;
+    }
+  }
+
+  /* Canvas editor styles */
+  .canvas-container {
+    @apply max-w-full overflow-auto;
+  }
+
+  .canvas-container canvas {
+    @apply bg-white dark:bg-gray-800;
+  }
+
+  /* Fabric.js specific controls in dark mode */
+  .dark .canvas-container .canvas-controls {
+    @apply stroke-white fill-white;
+  }
+
+  /* PDF export enhancements */
+  .pdf-content {
+    @apply dark:bg-gray-900 dark:text-white;
+  }
+
+  .export-format-btn {
+    @apply dark:bg-gray-800 dark:text-gray-200 dark:border-gray-700;
+  }
+
+  .export-format-btn:hover {
+    @apply dark:bg-gray-700;
+  }
+
+  .export-format-btn.active {
+    @apply dark:bg-primary dark:text-gray-900;
+  }
+  
+  /* Ensure contrast on selection in dark mode */
+  .dark ::selection {
+    @apply bg-primary/30 text-white;
+  }
+
+  /* Enhanced readability for dark mode presentation content */
+  .dark .slide-content {
+    @apply text-gray-100 leading-relaxed;
+  }
+
+  /* Better visibility for notes in dark mode */
+  .dark .slide-notes {
+    @apply bg-gray-800 text-gray-200 border-gray-700;
+  }
+}

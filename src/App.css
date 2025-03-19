@@ -1,0 +1,209 @@
+
+#root {
+  width: 100%;
+  margin: 0 auto;
+}
+
+.logo {
+  will-change: filter;
+  transition: filter 300ms;
+}
+
+.logo:hover {
+  filter: drop-shadow(0 0 1em rgba(255, 204, 153, 0.6));
+}
+
+/* Enhanced UI elements */
+.glass-card {
+  @apply backdrop-blur-lg bg-white/10 border border-white/20 
+         dark:bg-black/30 dark:border-white/10 rounded-xl shadow-sm;
+}
+
+.elevated-card {
+  @apply bg-white dark:bg-gray-800 rounded-xl shadow-lg
+         border border-gray-100 dark:border-gray-700
+         hover:shadow-xl transition-shadow duration-300;
+}
+
+.gradient-border {
+  position: relative;
+  border-radius: 0.75rem;
+  overflow: hidden;
+}
+
+.gradient-border::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  padding: 1px;
+  border-radius: 0.75rem;
+  background: linear-gradient(to right, var(--primary), #f97316);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* Modern Buttons */
+.btn-gradient {
+  @apply bg-gradient-to-r from-primary to-orange-500 
+         text-white font-medium px-6 py-2.5 rounded-full
+         shadow-md hover:shadow-lg transition-all duration-300
+         hover:translate-y-[-2px] active:translate-y-[1px];
+}
+
+.btn-outline-gradient {
+  @apply border-2 border-transparent bg-gradient-to-r from-primary to-orange-500
+         bg-clip-text text-transparent font-medium px-6 py-2 rounded-full
+         shadow-sm hover:shadow-md transition-all duration-300
+         relative after:absolute after:inset-0 after:p-[2px] 
+         after:rounded-full after:bg-gradient-to-r after:from-primary after:to-orange-500
+         after:-z-10 after:opacity-30;
+}
+
+/* Enhanced mobile responsiveness */
+@media (max-width: 768px) {
+  .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  
+  .mobile-menu {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--background);
+    z-index: 100;
+    padding: 2rem;
+  }
+  
+  .mobile-hidden {
+    display: none;
+  }
+  
+  /* Improved touch targets for mobile */
+  button, a {
+    min-height: 44px;
+    min-width: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  /* Form elements improvements for mobile */
+  input, select, textarea {
+    font-size: 16px; /* Prevents iOS from zooming in */
+  }
+}
+
+/* Mobile-first padding adjustments */
+@media (max-width: 640px) {
+  .section-padding {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+  
+  .header-padding {
+    padding-top: 5rem;
+  }
+  
+  /* Responsive grid adjustments */
+  .responsive-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1rem;
+  }
+}
+
+/* Canvas editor styles improvements */
+.canvas-container {
+  @apply max-w-full overflow-auto rounded-lg shadow-lg;
+  transition: all 0.3s ease;
+}
+
+.canvas-container:hover {
+  @apply shadow-xl;
+}
+
+.canvas-container canvas {
+  @apply bg-white dark:bg-gray-800;
+}
+
+/* Smoother scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Animation utilities */
+.animate-fade-in {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.animate-scale-in {
+  animation: scaleIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes scaleIn {
+  from { transform: scale(0.95); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+/* Enhanced tooltips */
+.enhanced-tooltip {
+  @apply invisible absolute z-50 px-3 py-2 rounded-md text-xs
+         opacity-0 transition-all duration-200 whitespace-nowrap;
+  background: linear-gradient(to right, rgba(0,0,0,0.8), rgba(30,30,30,0.95));
+  color: white;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+  transform: translateY(5px);
+}
+
+.tooltip-container:hover .enhanced-tooltip {
+  @apply visible opacity-100;
+  transform: translateY(0);
+}
+
+/* Dark mode specifics */
+.dark .logo:hover {
+  filter: drop-shadow(0 0 1em rgba(255, 204, 153, 0.8));
+}
+
+/* Fabric.js specific controls in dark mode */
+.dark .canvas-container .canvas-controls {
+  @apply stroke-white fill-white;
+}
+
+/* PDF export enhancements */
+.pdf-viewer {
+  width: 100%;
+  height: 100%;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.dark .pdf-viewer {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
+}
+
+/* Output format selection styles */
+.format-selector {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 480px) {
+  .format-selector {
+    flex-direction: column;
+  }
+}
