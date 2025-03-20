@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { 
@@ -14,6 +13,7 @@ import {
   Bot, 
   ArrowDown
 } from 'lucide-react';
+import { Card, CardContent, CardHeader, CardFooter, CardTitle, CardDescription } from '@/components/ui/card';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 
@@ -238,11 +238,15 @@ const FeatureCard = ({
   description: string 
 }) => {
   return (
-    <div className="hover-card p-6 h-full bg-white">
-      <div className="mb-5">{icon}</div>
-      <h3 className="text-xl font-semibold mb-3">{title}</h3>
-      <p className="text-foreground/70">{description}</p>
-    </div>
+    <Card className="transition-all duration-300 hover:shadow-lg hover:scale-[1.02] h-full">
+      <CardHeader>
+        <div className="mb-2">{icon}</div>
+        <CardTitle className="text-xl">{title}</CardTitle>
+      </CardHeader>
+      <CardContent>
+        <p className="text-foreground/70">{description}</p>
+      </CardContent>
+    </Card>
   );
 };
 
@@ -256,13 +260,15 @@ const StepCard = ({
   description: string 
 }) => {
   return (
-    <div className="hover-card p-6 bg-white text-center h-full flex flex-col items-center">
-      <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mb-4">
-        <span className="text-primary font-bold">{number}</span>
-      </div>
-      <h3 className="text-xl font-semibold mb-3">{title}</h3>
-      <p className="text-foreground/70">{description}</p>
-    </div>
+    <Card className="transition-all duration-300 hover:shadow-lg hover:scale-[1.02] h-full">
+      <CardContent className="pt-6 text-center flex flex-col items-center">
+        <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mb-4">
+          <span className="text-primary font-bold">{number}</span>
+        </div>
+        <CardTitle className="text-xl mb-3">{title}</CardTitle>
+        <p className="text-foreground/70">{description}</p>
+      </CardContent>
+    </Card>
   );
 };
 
@@ -276,18 +282,20 @@ const TestimonialCard = ({
   role: string 
 }) => {
   return (
-    <div className="hover-card p-6 bg-white h-full flex flex-col">
-      <div className="text-primary mb-4">
-        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M18.3333 6.66667V20H5V6.66667H18.3333ZM18.3333 3.33333H5C3.16667 3.33333 1.66667 4.83333 1.66667 6.66667V20C1.66667 21.8333 3.16667 23.3333 5 23.3333H18.3333C20.1667 23.3333 21.6667 21.8333 21.6667 20V6.66667C21.6667 4.83333 20.1667 3.33333 18.3333 3.33333ZM15 13.3333H8.33333V16.6667H15V13.3333ZM11.6667 10H8.33333V11.6667H11.6667V10ZM35 6.66667V20H21.6667V6.66667H35ZM35 3.33333H21.6667C19.8333 3.33333 18.3333 4.83333 18.3333 6.66667V20C18.3333 21.8333 19.8333 23.3333 21.6667 23.3333H35C36.8333 23.3333 38.3333 21.8333 38.3333 20V6.66667C38.3333 4.83333 36.8333 3.33333 35 3.33333ZM31.6667 13.3333H25V16.6667H31.6667V13.3333ZM28.3333 10H25V11.6667H28.3333V10Z" fill="currentColor"/>
-        </svg>
-      </div>
-      <p className="text-lg mb-6 flex-grow italic">{quote}</p>
-      <div>
-        <p className="font-semibold">{author}</p>
-        <p className="text-sm text-foreground/60">{role}</p>
-      </div>
-    </div>
+    <Card className="transition-all duration-300 hover:shadow-lg hover:scale-[1.02] h-full">
+      <CardContent className="pt-6 flex flex-col h-full">
+        <div className="text-primary mb-4">
+          <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M18.3333 6.66667V20H5V6.66667H18.3333ZM18.3333 3.33333H5C3.16667 3.33333 1.66667 4.83333 1.66667 6.66667V20C1.66667 21.8333 3.16667 23.3333 5 23.3333H18.3333C20.1667 23.3333 21.6667 21.8333 21.6667 20V6.66667C21.6667 4.83333 20.1667 3.33333 18.3333 3.33333ZM15 13.3333H8.33333V16.6667H15V13.3333ZM11.6667 10H8.33333V11.6667H11.6667V10ZM35 6.66667V20H21.6667V6.66667H35ZM35 3.33333H21.6667C19.8333 3.33333 18.3333 4.83333 18.3333 6.66667V20C18.3333 21.8333 19.8333 23.3333 21.6667 23.3333H35C36.8333 23.3333 38.3333 21.8333 38.3333 20V6.66667C38.3333 4.83333 36.8333 3.33333 35 3.33333ZM31.6667 13.3333H25V16.6667H31.6667V13.3333ZM28.3333 10H25V11.6667H28.3333V10Z" fill="currentColor"/>
+          </svg>
+        </div>
+        <p className="text-lg mb-6 flex-grow italic">{quote}</p>
+        <div>
+          <p className="font-semibold">{author}</p>
+          <p className="text-sm text-foreground/60">{role}</p>
+        </div>
+      </CardContent>
+    </Card>
   );
 };
 
