@@ -1,7 +1,7 @@
-
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { MoveRight, RefreshCw, Sparkles, AlertTriangle, Loader2 } from 'lucide-react';
+import { Card, CardContent, CardHeader, CardFooter, CardTitle } from '@/components/ui/card';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { useApiKey } from '../context/ApiKeyContext';
@@ -130,139 +130,143 @@ const CreatePrompt = () => {
             
             <div className="grid grid-cols-1 md:grid-cols-5 gap-8">
               <div className="md:col-span-2">
-                <div className="bg-white border rounded-xl shadow-sm p-6 sticky top-32">
-                  <form onSubmit={handleSubmit}>
-                    <div className="mb-5">
-                      <label htmlFor="topic" className="block text-sm font-medium mb-2">
-                        Presentation Topic *
-                      </label>
-                      <input
-                        id="topic"
-                        type="text"
-                        className="w-full px-4 py-3 rounded-lg border focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all"
-                        placeholder="e.g., Climate Change Solutions"
-                        value={topic}
-                        onChange={(e) => setTopic(e.target.value)}
-                        required
-                      />
-                    </div>
-                    
-                    <div className="mb-5">
-                      <label htmlFor="presentationType" className="block text-sm font-medium mb-2">
-                        Presentation Type
-                      </label>
-                      <select
-                        id="presentationType"
-                        className="w-full px-4 py-3 rounded-lg border focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all"
-                        value={presentationType}
-                        onChange={(e) => setPresentationType(e.target.value)}
-                      >
-                        <option value="general">General</option>
-                        <option value="business">Business</option>
-                        <option value="lecture">Lecture</option>
-                        <option value="pitch">Pitch Deck</option>
-                        <option value="informative">Informative</option>
-                      </select>
-                    </div>
-                    
-                    <div className="mb-5">
-                      <label htmlFor="slides" className="block text-sm font-medium mb-2">
-                        Number of Slides
-                      </label>
-                      <select
-                        id="slides"
-                        className="w-full px-4 py-3 rounded-lg border focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all"
-                        value={numberOfSlides}
-                        onChange={(e) => setNumberOfSlides(Number(e.target.value))}
-                      >
-                        {[3, 4, 5, 6, 7, 8, 10, 12].map((num) => (
-                          <option key={num} value={num}>
-                            {num} slides
-                          </option>
-                        ))}
-                      </select>
-                    </div>
-                    
-                    <div className="mb-5">
-                      <label htmlFor="style" className="block text-sm font-medium mb-2">
-                        Visual Style
-                      </label>
-                      <select
-                        id="style"
-                        className="w-full px-4 py-3 rounded-lg border focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all"
-                        value={presentationStyle}
-                        onChange={(e) => setPresentationStyle(e.target.value)}
-                      >
-                        <option value="professional">Professional</option>
-                        <option value="creative">Creative</option>
-                        <option value="minimal">Minimal</option>
-                        <option value="academic">Academic</option>
-                        <option value="business">Business</option>
-                        <option value="casual">Casual</option>
-                      </select>
-                    </div>
-                    
-                    <div className="mb-6">
-                      <label htmlFor="details" className="block text-sm font-medium mb-2">
-                        Additional Details (Optional)
-                      </label>
-                      <textarea
-                        id="details"
-                        className="w-full px-4 py-3 rounded-lg border focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all min-h-[120px]"
-                        placeholder="Any specific points to include, target audience, or additional context..."
-                        value={additionalDetails}
-                        onChange={(e) => setAdditionalDetails(e.target.value)}
-                      />
-                    </div>
-                    
-                    <button 
-                      type="submit" 
-                      className="btn-primary w-full flex items-center justify-center"
-                      disabled={loading || !isApiKeySet}
-                    >
-                      {loading ? (
-                        <>
-                          <Loader2 className="animate-spin mr-2" size={18} />
-                          Generating...
-                        </>
-                      ) : (
-                        <>
-                          <Sparkles size={18} className="mr-2" />
-                          Generate Content
-                        </>
-                      )}
-                    </button>
-                    
-                    {!isApiKeySet && (
-                      <div className="mt-4 text-center">
-                        <div className="flex items-center justify-center text-amber-600 text-sm">
-                          <AlertTriangle size={16} className="mr-2" />
-                          API key not set
-                        </div>
+                <Card className="sticky top-32">
+                  <CardContent className="pt-6">
+                    <form onSubmit={handleSubmit}>
+                      <div className="mb-5">
+                        <label htmlFor="topic" className="block text-sm font-medium mb-2">
+                          Presentation Topic *
+                        </label>
+                        <input
+                          id="topic"
+                          type="text"
+                          className="w-full px-4 py-3 rounded-lg border focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all"
+                          placeholder="e.g., Climate Change Solutions"
+                          value={topic}
+                          onChange={(e) => setTopic(e.target.value)}
+                          required
+                        />
                       </div>
-                    )}
-                  </form>
-                </div>
+                      
+                      <div className="mb-5">
+                        <label htmlFor="presentationType" className="block text-sm font-medium mb-2">
+                          Presentation Type
+                        </label>
+                        <select
+                          id="presentationType"
+                          className="w-full px-4 py-3 rounded-lg border focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all"
+                          value={presentationType}
+                          onChange={(e) => setPresentationType(e.target.value)}
+                        >
+                          <option value="general">General</option>
+                          <option value="business">Business</option>
+                          <option value="lecture">Lecture</option>
+                          <option value="pitch">Pitch Deck</option>
+                          <option value="informative">Informative</option>
+                        </select>
+                      </div>
+                      
+                      <div className="mb-5">
+                        <label htmlFor="slides" className="block text-sm font-medium mb-2">
+                          Number of Slides
+                        </label>
+                        <select
+                          id="slides"
+                          className="w-full px-4 py-3 rounded-lg border focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all"
+                          value={numberOfSlides}
+                          onChange={(e) => setNumberOfSlides(Number(e.target.value))}
+                        >
+                          {[3, 4, 5, 6, 7, 8, 10, 12].map((num) => (
+                            <option key={num} value={num}>
+                              {num} slides
+                            </option>
+                          ))}
+                        </select>
+                      </div>
+                      
+                      <div className="mb-5">
+                        <label htmlFor="style" className="block text-sm font-medium mb-2">
+                          Visual Style
+                        </label>
+                        <select
+                          id="style"
+                          className="w-full px-4 py-3 rounded-lg border focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all"
+                          value={presentationStyle}
+                          onChange={(e) => setPresentationStyle(e.target.value)}
+                        >
+                          <option value="professional">Professional</option>
+                          <option value="creative">Creative</option>
+                          <option value="minimal">Minimal</option>
+                          <option value="academic">Academic</option>
+                          <option value="business">Business</option>
+                          <option value="casual">Casual</option>
+                        </select>
+                      </div>
+                      
+                      <div className="mb-6">
+                        <label htmlFor="details" className="block text-sm font-medium mb-2">
+                          Additional Details (Optional)
+                        </label>
+                        <textarea
+                          id="details"
+                          className="w-full px-4 py-3 rounded-lg border focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all min-h-[120px]"
+                          placeholder="Any specific points to include, target audience, or additional context..."
+                          value={additionalDetails}
+                          onChange={(e) => setAdditionalDetails(e.target.value)}
+                        />
+                      </div>
+                      
+                      <button 
+                        type="submit" 
+                        className="btn-primary w-full flex items-center justify-center"
+                        disabled={loading || !isApiKeySet}
+                      >
+                        {loading ? (
+                          <>
+                            <Loader2 className="animate-spin mr-2" size={18} />
+                            Generating...
+                          </>
+                        ) : (
+                          <>
+                            <Sparkles size={18} className="mr-2" />
+                            Generate Content
+                          </>
+                        )}
+                      </button>
+                      
+                      {!isApiKeySet && (
+                        <div className="mt-4 text-center">
+                          <div className="flex items-center justify-center text-amber-600 text-sm">
+                            <AlertTriangle size={16} className="mr-2" />
+                            API key not set
+                          </div>
+                        </div>
+                      )}
+                    </form>
+                  </CardContent>
+                </Card>
               </div>
               
               <div className="md:col-span-3">
                 {loading ? (
-                  <div className="h-full flex flex-col items-center justify-center py-20 px-6 bg-white rounded-xl border">
-                    <Loader2 size={40} className="text-primary animate-spin mb-4" />
-                    <h3 className="text-xl font-medium mb-2">Generating your presentation</h3>
-                    <p className="text-foreground/70 text-center">
-                      Our AI is crafting the perfect content for your presentation.
-                      This may take a minute...
-                    </p>
-                  </div>
+                  <Card className="h-full">
+                    <CardContent className="flex flex-col items-center justify-center py-20 px-6">
+                      <Loader2 size={40} className="text-primary animate-spin mb-4" />
+                      <h3 className="text-xl font-medium mb-2">Generating your presentation</h3>
+                      <p className="text-foreground/70 text-center">
+                        Our AI is crafting the perfect content for your presentation.
+                        This may take a minute...
+                      </p>
+                    </CardContent>
+                  </Card>
                 ) : presentationData ? (
-                  <div className="bg-white rounded-xl border shadow-sm">
-                    <div className="p-6 border-b">
-                      <h2 className="text-2xl font-display font-bold mb-2">{presentationData.title}</h2>
+                  <Card>
+                    <CardHeader className="border-b">
+                      <CardTitle className="text-2xl font-display">{presentationData.title}</CardTitle>
                       {presentationData.subtitle && (
                         <p className="text-foreground/70">{presentationData.subtitle}</p>
                       )}
-                    </div>
+                    </CardHeader>
                     
                     <div className="p-6 max-h-[600px] overflow-y-auto">
                       <div className="space-y-6">
@@ -279,7 +283,7 @@ const CreatePrompt = () => {
                       </div>
                     </div>
                     
-                    <div className="p-6 border-t bg-secondary/30 flex flex-col sm:flex-row gap-4 justify-end">
+                    <CardFooter className="border-t bg-secondary/30 flex flex-col sm:flex-row gap-4 justify-end">
                       <button 
                         onClick={handleRegenerateContent}
                         className="btn-secondary"
@@ -294,19 +298,21 @@ const CreatePrompt = () => {
                         Continue to Editor
                         <MoveRight size={18} className="ml-2" />
                       </button>
-                    </div>
-                  </div>
+                    </CardFooter>
+                  </Card>
                 ) : (
-                  <div className="h-full flex flex-col items-center justify-center py-20 px-6 bg-white rounded-xl border text-center">
-                    <div className="w-20 h-20 rounded-full bg-primary/10 flex items-center justify-center mb-4">
-                      <Sparkles className="text-primary" size={28} />
-                    </div>
-                    <h3 className="text-xl font-medium mb-3">Ready to create your presentation</h3>
-                    <p className="text-foreground/70 max-w-md">
-                      Fill out the form with your presentation topic and preferences,
-                      then click "Generate Content" to get started.
-                    </p>
-                  </div>
+                  <Card className="h-full">
+                    <CardContent className="flex flex-col items-center justify-center py-20 px-6 text-center">
+                      <div className="w-20 h-20 rounded-full bg-primary/10 flex items-center justify-center mb-4">
+                        <Sparkles className="text-primary" size={28} />
+                      </div>
+                      <h3 className="text-xl font-medium mb-3">Ready to create your presentation</h3>
+                      <p className="text-foreground/70 max-w-md">
+                        Fill out the form with your presentation topic and preferences,
+                        then click "Generate Content" to get started.
+                      </p>
+                    </CardContent>
+                  </Card>
                 )}
               </div>
             </div>
